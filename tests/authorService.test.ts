@@ -35,9 +35,9 @@ describe("Verify GET /authors", () => {
   });
 
   it("should respond with a No authors found message when there are no authors in the database", async () => {
-    Author.getAllAuthors = jest.fn().mockRejectedValue([]);
+    Author.getAllAuthors = jest.fn().mockResolvedValue([]);
     const response = await request(app).get("/authors");
-    expect(response.statusCode).toBe(500);
+    expect(response.statusCode).toBe(200);
     expect(response.text).toBe("No authors found");
   });
 
